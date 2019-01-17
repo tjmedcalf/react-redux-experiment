@@ -4,14 +4,11 @@ import path from 'path';
 export default {
   devtool: 'cheap-module-eval-source-map',
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.json'],
-    alias: {
-      Actions: path.resolve(__dirname)
-    }
+    extensions: ['*', '.js', '.jsx', '.json']
   },
   entry: [
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index'),
+    path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
   mode: 'development',
@@ -20,8 +17,12 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'src')
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     rules: [
@@ -32,7 +33,15 @@ export default {
       },
       {
         test: /(\.css)$/,
-        loaders: ['style-loader', 'css']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
