@@ -15,7 +15,8 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/distServer.js"
+    "postbuild": "babel-node tools/distServer.js",
+    "compile:dev": "babel-node tools/bundler"
   },
   "author": "Cory House",
   "license": "MIT",
@@ -67,9 +68,9 @@
     "rimraf": "2.5.2",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "webpack": "1.13.0",
-    "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "webpack": "4.17.1",
+    "webpack-dev-middleware": "3.2.0",
+    "webpack-hot-middleware": "2.22.3"
   },
   "repository": {
     "type": "git",
