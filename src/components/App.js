@@ -1,23 +1,49 @@
-import React, {PropTypes} from 'react';
-import Header from "./common/Header";
-import {connect} from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import HomePage from "./home/HomePage";
+import CoursesPage from "./course/CoursesPage";
+import AboutPage from "./about/AboutPage";
+import ManageCoursePage from "./course/ManageCoursePage";
+import AuthorsPage from "./author/AuthorPage";
+import ManageAuthorPage from "./author/ManageAuthorPage";
+import { NavLink, Switch, Route, withRouter } from "react-router-dom";
+import LoadingDots from '../components/common/LoadingDots';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="container-fluid">
-        <Header loading={this.props.loading} />
+        <nav>
+          <div>
+            <NavLink exact to="/" activeClassName="active">Home</NavLink>
+            {" | "}
+            <NavLink to="/courses" activeClassName="active">Courses</NavLink>
+            {" | "}
+            <NavLink to="/authors" activeClassName="active">Manage Authors</NavLink>
+            {" | "}
+            <NavLink to="/about" activeClassName="active">About</NavLink>
+            {/*{loading && <LoadingDots interval={100} dots={20}/>}*/}
+          </div>
+        </nav>
 
-        {this.props.children}
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/courses" component={CoursesPage}/>
+          <Route path="/about" component={AboutPage}/>
+          <Route path="/course" component={ManageCoursePage}/>
+          <Route path="/course/:id" component={ManageCoursePage}/>
+          <Route path="/authors" component={AuthorsPage}/>
+          <Route path="/authors/:id" component={ManageAuthorPage}/>
+        </Switch>
       </div>
     );
   }
 }
-
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
-};
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -25,4 +51,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

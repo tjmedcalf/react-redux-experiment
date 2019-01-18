@@ -40,7 +40,7 @@ describe('Async Actions', () => {
       {type: types.LOAD_COURSES_SUCCESS, body: {courses: [{id: "clean-code", title: "Clean Code"}]}}
     ];
 
-    const store = mockStore({courses: []}, expectedActions)
+    const store = mockStore({courses: []}, expectedActions);
 
     store.dispatch(courseActions.loadCourses()).then(() => {
       const actions = store.getActions();

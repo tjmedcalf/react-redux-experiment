@@ -7,6 +7,7 @@ export default {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   entry: [
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     path.resolve(__dirname, 'src/index')
   ],
