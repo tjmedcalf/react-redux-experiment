@@ -15,7 +15,7 @@ export default class Root extends Component {
           <App />
         </ConnectedRouter>
       </Provider>
-    )
+    );
   }
 }
 
