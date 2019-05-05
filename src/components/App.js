@@ -35,10 +35,10 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage}/>
           <Route path="/courses" component={CoursesPage}/>
           <Route path="/about" component={AboutPage}/>
-          <Route path="/course" component={ManageCoursePage}/>
+          <Route exact path="/course" component={ManageCoursePage}/>
           <Route path="/course/:id" component={ManageCoursePage}/>
           <Route path="/authors" component={AuthorsPage}/>
-          <Route path="/authors/:id" component={ManageAuthorPage}/>
+          <Route path="/author/:id" component={ManageAuthorPage}/>
         </Switch>
       </div>
     );

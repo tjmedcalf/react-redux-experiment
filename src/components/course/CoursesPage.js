@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
+import {push} from 'connected-react-router';
 
 
 class CoursesPage extends React.Component {
@@ -19,6 +20,7 @@ class CoursesPage extends React.Component {
   }
 
   redirectToAddCoursePage() {
+    this.props.actions.push('/course');
     return false;
   }
 
@@ -42,7 +44,7 @@ CoursesPage.propTypes = {
 
 const mappers = {
   stateToProps: state => ({courses: state.courses}),
-  dispatchToProps: dispatch => ({actions: bindActionCreators(courseActions, dispatch)})
+  dispatchToProps: dispatch => ({actions: bindActionCreators(Object.assign({}, courseActions, {push}), dispatch)})
 };
 
 export default connect(mappers.stateToProps, mappers.dispatchToProps)(CoursesPage);
